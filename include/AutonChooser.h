@@ -7,7 +7,7 @@
 class AutonChooser {
   private:
     //std::vector<std::string> buttonNames;
-    lv_obj_t* par = lv_obj_create(lv_obj_create(lv_scr_act(), NULL));
+    lv_obj_t* par;
   public:
     //void setAutons(std::vector<std::string> buttonNames);
     //int getAutonChoice();

@@ -30,7 +30,7 @@ Robot::Robot() {
   arm  = new Arm();
   claw = new Claw();
 
-  mainController = new pros::Controller(pros::E_CONTROLLER_MASTER);
+  /*mainController = new pros::Controller(pros::E_CONTROLLER_MASTER);
   partnerController = new pros::Controller(pros::E_CONTROLLER_PARTNER);
 
   // Define buttons and channels
@@ -59,7 +59,7 @@ Robot::Robot() {
   ArmToStart->whenPressed(new MoveArmTo(0));
   ArmToHorizontal->whenPressed(new MoveArmTo(680));
   ArmToTop->whenPressed(new MoveArmTo(1520));
-  ArmToBack->whenPressed(new MoveArmTo(2360));
+  ArmToBack->whenPressed(new MoveArmTo(2360));*/
 }
 
 void Robot::robotInit() {

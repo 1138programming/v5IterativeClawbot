@@ -4,7 +4,6 @@
 #include "display/lvgl.h"
 
 //#include <vector>
-#include <string>
 
 class AutonChooser {
   private:
@@ -16,7 +15,7 @@ class AutonChooser {
 
     static AutonChooser* instance;
   public:
-    void setAutons(std::string options);
+    void setAutons(const char* options);
     int getAutonChoice();
     static AutonChooser* getInstance();
 };

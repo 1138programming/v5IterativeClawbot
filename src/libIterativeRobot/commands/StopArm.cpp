@@ -14,12 +14,14 @@ bool StopArm::canRun() {
 void StopArm::initialize() {
   // Perform any initialization steps for this command here, not in the
   // constructor
-  Robot::arm->lock();
-  Robot::arm->enablePID();
+  Robot::arm->move(0);
+  //Robot::arm->lock();
+  //Robot::arm->enablePID();
 }
 
 void StopArm::execute() {
-  //Robot::arm->move(0);
+  Robot::arm->move(0);
+  //printf("Stopping arm\n");
 }
 
 bool StopArm::isFinished() {

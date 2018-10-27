@@ -15,6 +15,7 @@ bool ArmControl::canRun() {
 void ArmControl::initialize() {
   // Perform any initialization steps for this command here, not in the
   // constructor
+  // printf("Arm control initialized\n");
   Robot::arm->disablePID();
 }
 

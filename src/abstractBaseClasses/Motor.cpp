@@ -61,6 +61,8 @@ void Motor::setSpeed(int speed) {
   if (following)
     return;
 
+  this->speed = speed;
+
   // Confine speed to between -127 to 127
   //speed = threshold((int)(confineToRange(speed, -KMaxMotorSpeed, KMaxMotorSpeed) * multiplier), this->threshold);
 
@@ -141,6 +143,7 @@ int Motor::updateSlewRate(int targetSpeed) {
 }
 
 void Motor::move() {
+  //printf("Motor speed is %d\n", speed);
   if (motorType == v4)
     v4Motor->set_value(updateSlewRate(speed));
   else

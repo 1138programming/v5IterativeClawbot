@@ -13,6 +13,7 @@
 #include "libIterativeRobot/commands/MoveArmTo.h"
 
 #include "libIterativeRobot/commands/AutonGroup1.h"
+#include "libIterativeRobot/commands/AutonGroup2.h"
 
 Base*  Robot::base = 0;
 Arm*   Robot::arm = 0;
@@ -67,6 +68,7 @@ void Robot::robotInit() {
 
 void Robot::autonInit() {
   printf("Default autonInit() function\n");
+  libIterativeRobot::EventScheduler::getInstance()->initialize();
   if (autonGroup != NULL) {
     delete autonGroup;
   }
@@ -77,23 +79,25 @@ void Robot::autonInit() {
 void Robot::autonPeriodic() {
   //printf("Default autonPeriodic() function\n");
   libIterativeRobot::EventScheduler::getInstance()->update();
-  //Motor::periodicUpdate();
+  Motor::periodicUpdate();
   //PIDController::loopAll();
 }
 
 void Robot::teleopInit() {
   printf("Default teleopInit() function\n");
+  libIterativeRobot::EventScheduler::getInstance()->initialize();
 }
 
 void Robot::teleopPeriodic() {
   //printf("Default teleopPeriodic() function\n");
   libIterativeRobot::EventScheduler::getInstance()->update();
-  //Motor::periodicUpdate();
+  Motor::periodicUpdate();
   //PIDController::loopAll();
 }
 
 void Robot::disabledInit() {
   printf("Default disabledInit() function\n");
+  libIterativeRobot::EventScheduler::getInstance()->initialize();
 }
 
 void Robot::disabledPeriodic() {

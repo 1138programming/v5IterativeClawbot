@@ -24,6 +24,8 @@ class Robot : public libIterativeRobot::RobotBase {
     static Arm*  arm;
     static Claw* claw;
 
+    static AutonChooser* autonChooser;
+
     libIterativeRobot::CommandGroup* autonGroup = NULL;
 
     // Pointers to controllers

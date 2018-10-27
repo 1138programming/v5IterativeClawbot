@@ -19,6 +19,8 @@ Base*  Robot::base = 0;
 Arm*   Robot::arm = 0;
 Claw*  Robot::claw = 0;
 
+AutonChooser* Robot::autonChooser = 0;
+
 pros::Controller* Robot::mainController = 0;
 pros::Controller* Robot::partnerController = 0;
 
@@ -29,6 +31,8 @@ Robot::Robot() {
   base = new Base();
   arm  = new Arm();
   claw = new Claw();
+
+  autonChooser = AutonChooser::getInstance();
 
   /*mainController = new pros::Controller(pros::E_CONTROLLER_MASTER);
   partnerController = new pros::Controller(pros::E_CONTROLLER_PARTNER);
@@ -69,10 +73,15 @@ void Robot::robotInit() {
 void Robot::autonInit() {
   printf("Default autonInit() function\n");
   libIterativeRobot::EventScheduler::getInstance()->initialize();
-  if (autonGroup != NULL) {
-    delete autonGroup;
+  int auton = autonChooser->getAutonChoice();
+  switch(auton) {
+    case 0:
+      autonGroup = new AutonGroup1();
+      break;
+    case 1:
+      autonGroup = new AutonGroup2();
+      break;
   }
-  autonGroup = new AutonGroup1();
   autonGroup->run();
 }
 

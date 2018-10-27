@@ -23,7 +23,7 @@ enum MotorType {
 
 class Motor {
   private:
-    const static int slewStep = 14;
+    const static int defaultSlewStep = 14;
 
     std::uint8_t channel; // Motor channel
     pros::motor_gearset_e_t gearset; // v5 motor gearset
@@ -31,6 +31,8 @@ class Motor {
 
     int currSpeed; // Used by updateSlew Rate
     int speed; // Speed of the motor
+    int slewedSpeed;
+    int slewStep;
     float multiplier; // Applied to speed
     int threshold = 5;
 

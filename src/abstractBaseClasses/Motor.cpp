@@ -16,6 +16,8 @@ Motor::Motor(std::uint8_t channel) {
   gearset = defaultGearset;
   encoderUnits = defaultEncoderUnits;
   speed = 0;
+  slewedSpeed = 0;
+  slewStep = defaultSlewStep;
   multiplier = 1;
   following = false;
   master = NULL;
@@ -61,7 +63,7 @@ void Motor::setSpeed(int speed) {
   if (following)
     return;
 
-  this->speed = speed;
+  this->speed = speed * multiplier;
 
   // Confine speed to between -127 to 127
   //speed = threshold((int)(confineToRange(speed, -KMaxMotorSpeed, KMaxMotorSpeed) * multiplier), this->threshold);
@@ -69,7 +71,7 @@ void Motor::setSpeed(int speed) {
   // Set the speed of the follower motors to the same speed
   for (unsigned int i = 0; i < numFollowers; i++) {
       if (followers[i] != NULL) {
-        followers[i]->speed = speed;
+        followers[i]->speed = speed * followers[i]->multiplier;
       }
   }
 }
@@ -140,6 +142,15 @@ MotorType Motor::getMotorType() {
 // doesn't work
 int Motor::updateSlewRate(int targetSpeed) {
   // A bit of motor slewing to make sure that we don't stall
+  int deltaSpeed = targetSpeed - slewedSpeed;
+  int sign = deltaSpeed < 0 ? -1 : 1;
+  if (abs(deltaSpeed) > slewStep) {
+    slewedSpeed += slewStep * sign;
+  } else {
+    slewedSpeed = targetSpeed;
+  }
+
+  return slewedSpeed;
 }
 
 void Motor::move() {
@@ -147,7 +158,7 @@ void Motor::move() {
   if (motorType == v4)
     v4Motor->set_value(updateSlewRate(speed));
   else
-    v5Motor->move(speed);
+    v5Motor->move(updateSlewRate(speed));
 }
 
 void Motor::periodicUpdate() {

@@ -1,15 +1,13 @@
 #include "AutonChooser.h"
-#include "libIterativeRobot/Robot.h"
 
 AutonChooser* AutonChooser::instance = 0;
 
 AutonChooser::AutonChooser() {
   par = lv_obj_create(lv_scr_act(), NULL);
   menu = lv_ddlist_create(par, NULL);
-  
 }
 
-void AutonChooser::setAutons(const char* options) {
+void AutonChooser::setAutons(std::string options) {
   lv_ddlist_set_options(menu, options);
 }
 

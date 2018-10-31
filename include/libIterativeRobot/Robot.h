@@ -8,6 +8,7 @@
 
 class Robot : public libIterativeRobot::RobotBase {
   private:
+    static lv_res_t print(lv_obj_t* roller);
   protected:
     void robotInit();
     void autonInit();

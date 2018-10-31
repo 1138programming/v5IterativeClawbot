@@ -43,7 +43,7 @@ Robot::Robot() {
   libIterativeRobot::JoystickButton* ArmUp = new libIterativeRobot::JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_R1);
   libIterativeRobot::JoystickButton* ArmDown = new libIterativeRobot::JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_R2);
   libIterativeRobot::JoystickButton* ClawOpen = new libIterativeRobot::JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_L1);
-  libIterativeRobot::JoystickButton* ClawClose = new libIterativeRobot::JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_L2);
+  libIterativeRobot::JoystickButton* ClawClose = new libIterativeRobot::JoystickButton(mainController, pros::E_CONTROLL ER_DIGITAL_L2);
   libIterativeRobot::JoystickButton* ArmToStart = new libIterativeRobot::JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_DOWN);
   libIterativeRobot::JoystickButton* ArmToHorizontal = new libIterativeRobot::JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_RIGHT);
   libIterativeRobot::JoystickButton* ArmToTop = new libIterativeRobot::JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_UP);
@@ -73,15 +73,7 @@ void Robot::robotInit() {
 void Robot::autonInit() {
   printf("Default autonInit() function\n");
   libIterativeRobot::EventScheduler::getInstance()->initialize();
-  int auton = autonChooser->getAutonChoice();
-  switch(auton) {
-    case 0:
-      autonGroup = new AutonGroup1();
-      break;
-    case 1:
-      autonGroup = new AutonGroup2();
-      break;
-  }
+  autonGroup = new AutonGroup1();
   autonGroup->run();
 }
 
@@ -92,9 +84,25 @@ void Robot::autonPeriodic() {
   //PIDController::loopAll();
 }
 
+lv_res_t Robot::print(lv_obj_t* roller) {
+  char* optionName = new char[128]();
+  lv_roller_get_selected_str(roller, optionName);
+  printf("Option selected is called ");
+  printf(optionName);
+  printf("\n");
+  return LV_RES_OK;
+}
+
 void Robot::teleopInit() {
   printf("Default teleopInit() function\n");
   libIterativeRobot::EventScheduler::getInstance()->initialize();
+
+  lv_obj_t* roller = lv_roller_create(lv_scr_act(), NULL);
+  lv_roller_set_options(roller, "One\nTwo\nThree");
+
+  lv_roller_set_action(roller, print);
+
+  lv_obj_align(roller, NULL, LV_ALIGN_CENTER, 0, 0);
 }
 
 void Robot::teleopPeriodic() {

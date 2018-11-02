@@ -128,8 +128,9 @@ std::int32_t Motor::getEncoderValue() {
     if (this->encoder != NULL)
       return this->encoder->get_value();
   } else {
-    std::uint32_t time = pros::millis();
-    return this->v5Motor->get_raw_position(&time);
+    //std::uint32_t time = pros::millis();
+    //return this->v5Motor->get_raw_position(&time);
+    return this->v5Motor->get_position();
   }
   return 0;
 }

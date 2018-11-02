@@ -12,8 +12,8 @@ lv_obj_t* AutonChooser::scrollRight;
 AutonChooser* AutonChooser::instance;
 
 AutonChooser::AutonChooser() {
-  autonNames.push_back("Auton1");
-  autonNames.push_back("Auton2");
+  autonNames.push_back("Red Auton");
+  autonNames.push_back("Blue Auton");
 
   numAutons = autonNames.size();
 }
@@ -44,16 +44,22 @@ void AutonChooser::init(size_t numAutons) {
   lv_obj_t* scrollRightLabel = lv_label_create(scrollRight, NULL);
   lv_label_set_text(scrollRightLabel, ">");
   lv_btn_set_action(scrollRight, LV_BTN_ACTION_PR, updateAutonName);
+  lv_obj_align(scrollRight, par, LV_ALIGN_IN_RIGHT_MID, 0, 0);
 
   autonName = lv_label_create(par, NULL);
   lv_label_set_text(autonName, autonNames[auton]);
+  lv_obj_align(autonName, par, LV_ALIGN_CENTER, 0, 0);
 
   scrollLeft = lv_btn_create(par, NULL);
   lv_obj_t* scrollLeftLabel = lv_label_create(scrollLeft, NULL);
   lv_label_set_text(scrollLeftLabel, "<");
   lv_btn_set_action(scrollLeft, LV_BTN_ACTION_PR, updateAutonName);
+  lv_obj_align(scrollLeft, par, LV_ALIGN_IN_LEFT_MID, 0, 0);
 }
 
+size_t AutonChooser::getAutonChoice() {
+  return auton;
+}
 
 AutonChooser* AutonChooser::getInstance() {
   if (instance == 0) {

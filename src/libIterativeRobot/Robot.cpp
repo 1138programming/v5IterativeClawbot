@@ -73,7 +73,12 @@ void Robot::robotInit() {
 void Robot::autonInit() {
   printf("Default autonInit() function\n");
   libIterativeRobot::EventScheduler::getInstance()->initialize();
-  autonGroup = new AutonGroup1();
+  switch(autonChooser->getAutonChoice()) {
+    case 0:
+      autonGroup = new AutonGroup1();
+    case 1:
+      autonGroup = new AutonGroup2();
+  }
   autonGroup->run();
 }
 

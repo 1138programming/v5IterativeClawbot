@@ -1,7 +1,7 @@
 #include "AutonChooser.h"
 
 size_t AutonChooser::numAutons;
-std::vector<char*> AutonChooser::autonNames;
+std::vector<const char*> AutonChooser::autonNames;
 size_t AutonChooser::auton;
 
 // LVGL Objects
@@ -12,6 +12,10 @@ lv_obj_t* AutonChooser::scrollRight;
 AutonChooser* AutonChooser::instance;
 
 AutonChooser::AutonChooser() {
+  autonNames.push_back("Auton1");
+  autonNames.push_back("Auton2");
+
+  numAutons = autonNames.size();
 }
 
 lv_res_t AutonChooser::updateAutonName(lv_obj_t* btn) {
@@ -30,8 +34,7 @@ lv_res_t AutonChooser::updateAutonName(lv_obj_t* btn) {
   return LV_RES_OK;
 }
 
-void AutonChooser::init(size_t numAutons, std::vector<char*> autonNames) {
-  this->numAutons = numAutons;
+void AutonChooser::init(size_t numAutons) {
   this->autonNames = autonNames;
   auton = 0;
 

@@ -20,7 +20,7 @@ class AutonChooser {
     static AutonChooser* instance;
   public:
     static lv_res_t updateAutonName(lv_obj_t* btn);
-    static void init(size_t numAutons);
+    void init(size_t numAutons);
     static size_t getAutonChoice();
 
     static AutonChooser* getInstance();

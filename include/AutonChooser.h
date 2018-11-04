@@ -1,6 +1,7 @@
 #ifndef AUTONCHOOSER_H
 #define AUTONCHOOSER_H
 
+#include "main.h"
 #include "display/lvgl.h"
 
 #include <vector>
@@ -20,7 +21,8 @@ class AutonChooser {
     static AutonChooser* instance;
   public:
     static lv_res_t updateAutonName(lv_obj_t* btn);
-    void init(size_t numAutons);
+    static void init();
+    static void uninit();
     static size_t getAutonChoice();
 
     static AutonChooser* getInstance();

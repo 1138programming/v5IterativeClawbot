@@ -74,7 +74,7 @@ void Robot::autonInit() {
   printf("Default autonInit() function\n");
   libIterativeRobot::EventScheduler::getInstance()->initialize();
   autonChooser->uninit();
-  switch(autonChooser->getAutonChoice()) {
+  switch (autonChooser->getAutonChoice()) {
     case 0:
       printf("Running group %d\n", 1);
       autonGroup = new AutonGroup1();
@@ -106,14 +106,6 @@ lv_res_t Robot::print(lv_obj_t* roller) {
 void Robot::teleopInit() {
   printf("Default teleopInit() function\n");
   libIterativeRobot::EventScheduler::getInstance()->initialize();
-
-  /*lv_obj_t* roller = lv_roller_create(lv_scr_act(), NULL);
-  lv_roller_set_options(roller, "One\nTwo\nThree");
-
-  lv_roller_set_action(roller, print);
-
-  lv_obj_align(roller, NULL, LV_ALIGN_CENTER, 0, 0);*/
-
   autonChooser->init();
 }
 

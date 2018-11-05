@@ -49,7 +49,7 @@
 #include "libIterativeRobot/subsystems/Claw.h"
 #include "libIterativeRobot/subsystems/ExampleSubsystem.h"
 
-#include "AutonChooser.h"
+#include "libIterativeRobot/AutonChooser.h"
 
 /**
  * You should add more #includes here

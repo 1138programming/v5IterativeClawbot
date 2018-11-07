@@ -33,5 +33,4 @@ void DriveWithJoy::end() {
 void DriveWithJoy::interrupted() {
   // Code that runs when this command is interrupted by another one
   // with a higher priority.
-  Robot::base->move(0, 0);
 }

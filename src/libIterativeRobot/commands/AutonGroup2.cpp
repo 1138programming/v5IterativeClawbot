@@ -1,7 +1,6 @@
 #include "libIterativeRobot/commands/AutonGroup2.h"
-#include "libIterativeRobot/commands/MoveClawFor.h"
+#include "libIterativeRobot/commands/MoveArmTo.h"
 
 AutonGroup2::AutonGroup2() {
-  addSequentialCommand(new MoveClawFor(1000));
-  addSequentialCommand(new MoveClawFor(1000));
+  addSequentialCommand(new MoveArmTo(1000));
 }

@@ -34,7 +34,7 @@ Robot::Robot() {
 
   autonChooser = AutonChooser::getInstance();
 
-  /*mainController = new pros::Controller(pros::E_CONTROLLER_MASTER);
+  mainController = new pros::Controller(pros::E_CONTROLLER_MASTER);
   partnerController = new pros::Controller(pros::E_CONTROLLER_PARTNER);
 
   // Define buttons and channels
@@ -42,8 +42,8 @@ Robot::Robot() {
   libIterativeRobot::JoystickChannel* LeftY = new libIterativeRobot::JoystickChannel(mainController, pros::E_CONTROLLER_ANALOG_LEFT_Y);
   libIterativeRobot::JoystickButton* ArmUp = new libIterativeRobot::JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_R1);
   libIterativeRobot::JoystickButton* ArmDown = new libIterativeRobot::JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_R2);
-  libIterativeRobot::JoystickButton* ClawOpen = new libIterativeRobot::JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_L1);
-  libIterativeRobot::JoystickButton* ClawClose = new libIterativeRobot::JoystickButton(mainController, pros::E_CONTROLL ER_DIGITAL_L2);
+  //libIterativeRobot::JoystickButton* ClawOpen = new libIterativeRobot::JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_L1);
+  //libIterativeRobot::JoystickButton* ClawClose = new libIterativeRobot::JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_L2);
   libIterativeRobot::JoystickButton* ArmToStart = new libIterativeRobot::JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_DOWN);
   libIterativeRobot::JoystickButton* ArmToHorizontal = new libIterativeRobot::JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_RIGHT);
   libIterativeRobot::JoystickButton* ArmToTop = new libIterativeRobot::JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_UP);
@@ -57,13 +57,13 @@ Robot::Robot() {
   ArmUp->whileHeld(new ArmControl(true));
   ArmDown->whileHeld(new ArmControl(false));
 
-  ClawOpen->whileHeld(new ClawControl(true));
-  ClawClose->whileHeld(new ClawControl(false));
+  //ClawOpen->whileHeld(new ClawControl(true));
+  //ClawClose->whileHeld(new ClawControl(false));
 
   ArmToStart->whenPressed(new MoveArmTo(0));
   ArmToHorizontal->whenPressed(new MoveArmTo(680));
   ArmToTop->whenPressed(new MoveArmTo(1520));
-  ArmToBack->whenPressed(new MoveArmTo(2360));*/
+  ArmToBack->whenPressed(new MoveArmTo(2360));
 }
 
 void Robot::robotInit() {
@@ -74,6 +74,7 @@ void Robot::autonInit() {
   printf("Default autonInit() function\n");
   libIterativeRobot::EventScheduler::getInstance()->initialize();
   autonChooser->uninit();
+
   switch (autonChooser->getAutonChoice()) {
     case 0:
       printf("Running group %d\n", 1);

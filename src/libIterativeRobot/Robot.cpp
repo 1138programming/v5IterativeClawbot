@@ -107,7 +107,10 @@ lv_res_t Robot::print(lv_obj_t* roller) {
 void Robot::teleopInit() {
   printf("Default teleopInit() function\n");
   libIterativeRobot::EventScheduler::getInstance()->initialize();
-  autonChooser->init();
+  //autonChooser->init();
+
+  autonGroup = new AutonGroup1();
+  autonGroup->run();
 }
 
 void Robot::teleopPeriodic() {

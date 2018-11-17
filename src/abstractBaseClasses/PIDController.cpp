@@ -85,7 +85,8 @@ void PIDController::lock() {
 }
 
 bool PIDController::atSetpoint() {
-  bool atSetpoint = inRange(this->currSensorValue, setpoint - threshold, setpoint + threshold) && fabs(derivative) < 0.1; // Checks if the sensor value is within a threshold of the target and whether the derivative is less than 0.1
+  currSensorValue = getSensorValue();
+  bool atSetpoint = inRange(currSensorValue, setpoint - threshold, setpoint + threshold) && fabs(derivative) < 0.1; // Checks if the sensor value is within a threshold of the target and whether the derivative is less than 0.1
   return atSetpoint;
 }
 

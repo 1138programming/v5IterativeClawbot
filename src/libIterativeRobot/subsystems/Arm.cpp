@@ -3,8 +3,7 @@
 
 Arm::Arm() {
   // Get arm motors
-  armMotor = Motor::getMotor(armPort);
-  //armMotor->reverse();
+  armMotor = Motor::getMotor(armPort, armMotorGearset);
 
   armController = new PIDController(armMotor, 0.32, 0, 0.05);
 }
@@ -40,9 +39,9 @@ void Arm::lock() {
 }
 
 void Arm::disablePID() {
-  armController->enabled = false;
+  armController->disable();
 }
 
 void Arm::enablePID() {
-  armController->enabled = true;
+  armController->enable();
 }

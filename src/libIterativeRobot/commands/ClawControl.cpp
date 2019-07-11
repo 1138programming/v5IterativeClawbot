@@ -15,18 +15,17 @@ bool ClawControl::canRun() {
 void ClawControl::initialize() {
   // Perform any initialization steps for this command here, not in the
   // constructor
-}
-
-void ClawControl::execute() {
-  //printf("Claw control running\n");
   if (this->Open)
     Robot::claw->move(KMaxMotorSpeed);
   else
     Robot::claw->move(-KMaxMotorSpeed);
 }
 
+void ClawControl::execute() {
+}
+
 bool ClawControl::isFinished() {
-  return true;
+  return false;
 }
 
 void ClawControl::end() {

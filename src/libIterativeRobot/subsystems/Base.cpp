@@ -1,14 +1,17 @@
 #include "main.h"
+#include "libIterativeRobot/commands/StopBase.h"
 
 Base::Base() {
   // Set up motors
-  leftMotor = Motor::getMotor(leftBasePort);
-  rightMotor = Motor::getMotor(rightBasePort);
+  leftMotor = Motor::getMotor(leftBasePort, baseMotorGearset);
+  rightMotor = Motor::getMotor(rightBasePort, baseMotorGearset);
+
+  rightMotor->reverse();
 }
 
 void Base::initDefaultCommand() {
   // Setup up a default command here
-  //setDefaultCommand(new StopBase());
+  setDefaultCommand(new StopBase());
 }
 
 /**

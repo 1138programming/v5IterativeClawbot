@@ -3,8 +3,8 @@
 #include "Constants.h"
 
 StopClaw::StopClaw() {
-  requires(Robot::claw);
-  this->priority = DefaultCommandPriority; // Lowest priority
+  //requires(Robot::claw);
+  //this->priority = DefaultCommandPriority; // Lowest priority
 }
 
 bool StopClaw::canRun() {
@@ -13,11 +13,11 @@ bool StopClaw::canRun() {
 
 void StopClaw::initialize() {
   // Perform any initialization steps for this command here, not in the
-  // constructorr
+  // constructor
+  Robot::claw->move(0);
 }
 
 void StopClaw::execute() {
-  Robot::claw->move(0);
 }
 
 bool StopClaw::isFinished() {

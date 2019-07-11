@@ -1,13 +1,13 @@
 #include "main.h"
-//#include "commands/StopClaw.h"
+#include "libIterativeRobot/commands/StopClaw.h"
 
 Claw::Claw() {
   // Get claw motors
-  clawMotor = Motor::getMotor(clawPort);
+  clawMotor = Motor::getMotor(clawPort, clawMotorGearset);
 }
 
 void Claw::initDefaultCommand() {
-  //setDefaultCommand(new StopClaw());
+  setDefaultCommand(new StopClaw());
 }
 
 /**
@@ -17,4 +17,5 @@ void Claw::initDefaultCommand() {
  */
 void Claw::move(int speed) {
   clawMotor->setSpeed(speed);
+  printf("Motor speed set to %d\n", speed);
 }

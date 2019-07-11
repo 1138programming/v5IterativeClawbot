@@ -3,8 +3,8 @@
 #include "Constants.h"
 
 StopBase::StopBase() {
-  requires(Robot::base);
-  this->priority = DefaultCommandPriority; // Lowest priority
+  //requires(Robot::base);
+  //this->priority = DefaultCommandPriority; // Lowest priority
 }
 
 bool StopBase::canRun() {

@@ -42,14 +42,16 @@ Robot::Robot() {
   libIterativeRobot::JoystickChannel* LeftY = new libIterativeRobot::JoystickChannel(mainController, pros::E_CONTROLLER_ANALOG_LEFT_Y);
   libIterativeRobot::JoystickButton* ArmUp = new libIterativeRobot::JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_R1);
   libIterativeRobot::JoystickButton* ArmDown = new libIterativeRobot::JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_R2);
-  //libIterativeRobot::JoystickButton* ClawOpen = new libIterativeRobot::JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_L1);
-  //libIterativeRobot::JoystickButton* ClawClose = new libIterativeRobot::JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_L2);
+  libIterativeRobot::JoystickButton* ClawOpen = new libIterativeRobot::JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_L1);
+  libIterativeRobot::JoystickButton* ClawClose = new libIterativeRobot::JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_L2);
   libIterativeRobot::JoystickButton* ArmToStart = new libIterativeRobot::JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_DOWN);
   libIterativeRobot::JoystickButton* ArmToHorizontal = new libIterativeRobot::JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_RIGHT);
   libIterativeRobot::JoystickButton* ArmToTop = new libIterativeRobot::JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_UP);
   libIterativeRobot::JoystickButton* ArmToBack = new libIterativeRobot::JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_LEFT);
 
   // Add commands to be run to buttons
+  RightY->setThreshold(50);
+  LeftY->setThreshold(50);
   DriveWithJoy* driveCommand = new DriveWithJoy();
   RightY->whilePastThreshold(driveCommand);
   LeftY->whilePastThreshold(driveCommand);
@@ -57,8 +59,14 @@ Robot::Robot() {
   ArmUp->whileHeld(new ArmControl(true));
   ArmDown->whileHeld(new ArmControl(false));
 
-  //ClawOpen->whileHeld(new ClawControl(true));
-  //ClawClose->whileHeld(new ClawControl(false));
+  ClawControl* clawOpen = new ClawControl(true);
+  ClawControl* clawClose = new ClawControl(false);
+  ClawOpen->whenPressed(clawOpen);
+  ClawOpen->whenPressed(clawClose, libIterativeRobot::STOP);
+  ClawClose->whenPressed(clawClose);
+  ClawClose->whenPressed(clawOpen, libIterativeRobot::STOP);
+  ClawOpen->whenReleased(clawOpen, libIterativeRobot::STOP);
+  ClawClose->whenReleased(clawClose, libIterativeRobot::STOP);
 
   ArmToStart->whenPressed(new MoveArmTo(0));
   ArmToHorizontal->whenPressed(new MoveArmTo(680));
@@ -92,7 +100,7 @@ void Robot::autonPeriodic() {
   //printf("Default autonPeriodic() function\n");
   libIterativeRobot::EventScheduler::getInstance()->update();
   Motor::periodicUpdate();
-  //PIDController::loopAll();
+  PIDController::loopAll();
 }
 
 lv_res_t Robot::print(lv_obj_t* roller) {
@@ -109,15 +117,15 @@ void Robot::teleopInit() {
   libIterativeRobot::EventScheduler::getInstance()->initialize();
   //autonChooser->init();
 
-  autonGroup = new AutonGroup1();
-  autonGroup->run();
+  //autonGroup = new AutonGroup1();
+  //autonGroup->run();
 }
 
 void Robot::teleopPeriodic() {
   //printf("Default teleopPeriodic() function\n");
   libIterativeRobot::EventScheduler::getInstance()->update();
   Motor::periodicUpdate();
-  //PIDController::loopAll();
+  PIDController::loopAll();
 }
 
 void Robot::disabledInit() {

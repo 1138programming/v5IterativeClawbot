@@ -3,8 +3,8 @@
 #include "Constants.h"
 
 StopArm::StopArm() {
-  requires(Robot::arm);
-  this->priority = DefaultCommandPriority; // Lowest priority
+  //requires(Robot::arm);
+  //this->priority = DefaultCommandPriority; // Lowest priority
 }
 
 bool StopArm::canRun() {

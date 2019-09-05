@@ -8,6 +8,8 @@ StopArm::StopArm() {
 }
 
 bool StopArm::canRun() {
+  //printf("StopArm canRun\n");
+  //pros::delay(1000);
   return true; // This is the default value anyways, so this method can be removed
 }
 

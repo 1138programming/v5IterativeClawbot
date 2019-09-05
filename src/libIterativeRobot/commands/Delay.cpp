@@ -2,10 +2,11 @@
 #include "libIterativeRobot/Robot.h"
 #include "Constants.h"
 
-Delay::Delay(int duration) {
+Delay::Delay(int duration, int id) {
   this->startTime = 0;
   this->duration = duration;
   this->priority = 1;
+  this->id = id;
 }
 
 bool Delay::canRun() {
@@ -16,11 +17,12 @@ void Delay::initialize() {
   // Perform any initialization steps for this command here, not in the
   // constructor
   startTime = pros::millis();
+  printf("Starting delay. ID is %d\n", id);
 }
 
 void Delay::execute() {
   //printf("Claw control running\n");
-  printf("Time at: %d\n", pros::millis() - startTime);
+  printf("Time at: %d. ID is %d\n", pros::millis() - startTime, id);
 }
 
 bool Delay::isFinished() {
@@ -29,10 +31,11 @@ bool Delay::isFinished() {
 
 void Delay::end() {
   // Code that runs when isFinished() returns true.
-  printf("Finished delay\n");
+  printf("Finished delay. ID is %d\n", id);
 }
 
 void Delay::interrupted() {
+  printf("Delay interrupted. ID is %d\n", id);
   // Code that runs when this command is interrupted by another one
   // with a higher priority.
 }

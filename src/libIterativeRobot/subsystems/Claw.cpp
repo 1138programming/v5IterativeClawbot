@@ -17,5 +17,5 @@ void Claw::initDefaultCommand() {
  */
 void Claw::move(int speed) {
   clawMotor->setSpeed(speed);
-  printf("Motor speed set to %d\n", speed);
+  //printf("Motor speed set to %d\n", speed);
 }

@@ -11,10 +11,11 @@ class Delay: public libIterativeRobot::Command {
     bool isFinished();
     void end();
     void interrupted();
-    Delay(int duration);
+    Delay(int duration, int id);
   private:
     int startTime;
     int duration;
+    int id;
 };
 
 #endif // _COMMANDS_DELAY_H_

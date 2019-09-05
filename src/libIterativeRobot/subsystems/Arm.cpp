@@ -9,7 +9,10 @@ Arm::Arm() {
 }
 
 void Arm::initDefaultCommand() {
-  setDefaultCommand(new StopArm());
+  StopArm* stopArm = new StopArm();
+  //printf("Stop arm address is %p\n", stopArm);
+  pros::delay(1000);
+  setDefaultCommand(stopArm);
 }
 
 /**

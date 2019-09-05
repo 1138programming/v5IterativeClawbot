@@ -11,6 +11,7 @@
 #include "libIterativeRobot/commands/ClawControl.h"
 #include "libIterativeRobot/commands/MoveArmFor.h"
 #include "libIterativeRobot/commands/MoveArmTo.h"
+#include "libIterativeRobot/commands/LambdaGroup.h"
 
 #include "libIterativeRobot/commands/AutonGroup1.h"
 #include "libIterativeRobot/commands/AutonGroup2.h"
@@ -18,6 +19,8 @@
 Base*  Robot::base = 0;
 Arm*   Robot::arm = 0;
 Claw*  Robot::claw = 0;
+
+Robot* Robot::instance = 0;
 
 AutonChooser* Robot::autonChooser = 0;
 
@@ -62,11 +65,11 @@ Robot::Robot() {
   ClawControl* clawOpen = new ClawControl(true);
   ClawControl* clawClose = new ClawControl(false);
   ClawOpen->whenPressed(clawOpen);
-  ClawOpen->whenPressed(clawClose, libIterativeRobot::STOP);
+  ClawOpen->whenPressed(clawClose, libIterativeRobot::Action::STOP);
   ClawClose->whenPressed(clawClose);
-  ClawClose->whenPressed(clawOpen, libIterativeRobot::STOP);
-  ClawOpen->whenReleased(clawOpen, libIterativeRobot::STOP);
-  ClawClose->whenReleased(clawClose, libIterativeRobot::STOP);
+  ClawClose->whenPressed(clawOpen, libIterativeRobot::Action::STOP);
+  ClawOpen->whenReleased(clawOpen, libIterativeRobot::Action::STOP);
+  ClawClose->whenReleased(clawClose, libIterativeRobot::Action::STOP);
 
   ArmToStart->whenPressed(new MoveArmTo(0));
   ArmToHorizontal->whenPressed(new MoveArmTo(680));
@@ -114,17 +117,24 @@ lv_res_t Robot::print(lv_obj_t* roller) {
 
 void Robot::teleopInit() {
   printf("Default teleopInit() function\n");
-  libIterativeRobot::EventScheduler::getInstance()->initialize();
+  libIterativeRobot::EventScheduler::getInstance()->initialize(true);
   //autonChooser->init();
 
-  //autonGroup = new AutonGroup1();
-  //autonGroup->run();
+  autonGroup = new AutonGroup1();
+  autonGroup->run();
 }
 
 void Robot::teleopPeriodic() {
   //printf("Default teleopPeriodic() function\n");
+  //pros::delay(1000);
   libIterativeRobot::EventScheduler::getInstance()->update();
+
+  //printf("Motor periodic update\n");
+  //pros::delay(1000);
   Motor::periodicUpdate();
+
+  //printf("PIDController loop\n");
+  //pros::delay(1000);
   PIDController::loopAll();
 }
 
@@ -136,4 +146,11 @@ void Robot::disabledInit() {
 
 void Robot::disabledPeriodic() {
   //printf("Default disabledPeriodic() function\n");
+}
+
+Robot* Robot::getInstance() {
+    if (instance == NULL) {
+        instance = new Robot();
+    }
+    return instance;
 }

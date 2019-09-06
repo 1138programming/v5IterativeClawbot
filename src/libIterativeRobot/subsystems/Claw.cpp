@@ -1,5 +1,5 @@
 #include "main.h"
-#include "libIterativeRobot/commands/StopClaw.h"
+#include "libIterativeRobot/commands/Claw/StopClaw.h"
 
 Claw::Claw() {
   // Get claw motors

@@ -1,4 +1,4 @@
-#include "libIterativeRobot/commands/ClawControl.h"
+#include "libIterativeRobot/commands/Claw/ClawControl.h"
 #include "libIterativeRobot/Robot.h"
 #include "Constants.h"
 

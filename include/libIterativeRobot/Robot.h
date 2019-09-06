@@ -8,7 +8,6 @@
 
 class Robot : public libIterativeRobot::RobotBase {
   private:
-    static lv_res_t print(lv_obj_t* roller);
     static Robot* instance;
     Robot();
   protected:
@@ -22,14 +21,13 @@ class Robot : public libIterativeRobot::RobotBase {
   public:
     static Robot* getInstance();
 
-    // Pointers to every subsystem on the robot:
+    // Pointers to every subsystem on the robot
     static Base* base;
     static Arm*  arm;
     static Claw* claw;
 
+    // Pointer to the auton chooser
     static AutonChooser* autonChooser;
-
-    libIterativeRobot::CommandGroup* autonGroup = NULL;
 
     // Pointers to controllers
     static pros::Controller* mainController;

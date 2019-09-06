@@ -47,7 +47,6 @@
 #include "libIterativeRobot/subsystems/Arm.h"
 #include "libIterativeRobot/subsystems/Base.h"
 #include "libIterativeRobot/subsystems/Claw.h"
-#include "libIterativeRobot/subsystems/ExampleSubsystem.h"
 
 #include "libIterativeRobot/AutonChooser.h"
 

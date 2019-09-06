@@ -1,4 +1,4 @@
-#include "libIterativeRobot/commands/Iterations.h"
+#include "libIterativeRobot/commands/Miscellaneous/Iterations.h"
 #include "libIterativeRobot/Robot.h"
 #include "Constants.h"
 

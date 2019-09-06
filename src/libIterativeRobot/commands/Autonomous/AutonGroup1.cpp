@@ -1,7 +1,7 @@
-#include "libIterativeRobot/commands/AutonGroup1.h"
-#include "libIterativeRobot/commands/AutonGroup2.h"
-#include "libIterativeRobot/commands/Delay.h"
-#include "libIterativeRobot/commands/Iterations.h"
+#include "libIterativeRobot/commands/Autonomous/AutonGroup1.h"
+#include "libIterativeRobot/commands/Autonomous/AutonGroup2.h"
+#include "libIterativeRobot/commands/Miscellaneous/Delay.h"
+#include "libIterativeRobot/commands/Miscellaneous/Iterations.h"
 #include "libIterativeRobot/commands/LambdaGroup.h"
 
 AutonGroup1::AutonGroup1() {

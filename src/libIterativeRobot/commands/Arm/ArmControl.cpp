@@ -1,4 +1,4 @@
-#include "libIterativeRobot/commands/ArmControl.h"
+#include "libIterativeRobot/commands/Arm/ArmControl.h"
 #include "libIterativeRobot/Robot.h"
 #include "Constants.h"
 

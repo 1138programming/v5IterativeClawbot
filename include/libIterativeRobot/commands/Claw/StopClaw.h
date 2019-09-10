@@ -11,6 +11,7 @@ class StopClaw: public libIterativeRobot::Command {
     bool isFinished();
     void end();
     void interrupted();
+    void blocked();
     StopClaw();
   private:
 };

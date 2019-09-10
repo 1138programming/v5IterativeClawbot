@@ -11,6 +11,7 @@ class MoveArmTo: public libIterativeRobot::Command {
     bool isFinished();
     void end();
     void interrupted();
+    void blocked();
     MoveArmTo(int target);
   private:
     int target = 0;

@@ -40,3 +40,6 @@ void MoveArmFor::interrupted() {
   // with a higher priority.
   Robot::arm->move(0);
 }
+
+void MoveArmFor::blocked() {
+}

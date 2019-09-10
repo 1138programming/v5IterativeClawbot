@@ -11,11 +11,11 @@
 #include "libIterativeRobot/commands/Claw/ClawControl.h"
 #include "libIterativeRobot/commands/Claw/MoveClawFor.h"
 
+Robot* Robot::instance = 0;
+
 Base*  Robot::base = 0;
 Arm*   Robot::arm = 0;
 Claw*  Robot::claw = 0;
-
-Robot* Robot::instance = 0;
 
 AutonChooser* Robot::autonChooser = 0;
 
@@ -24,7 +24,7 @@ pros::Controller* Robot::partnerController = 0;
 
 Robot::Robot() {
   printf("Overridden robot constructor!\n");
-  
+
   // Initialize any subsystems
   base = new Base();
   arm  = new Arm();
@@ -93,6 +93,9 @@ void Robot::autonPeriodic() {
 void Robot::teleopInit() {
   printf("Default teleopInit() function\n");
   autonChooser->init();
+
+  // AutonGroup1* autonGroup1 = new AutonGroup1();
+  // autonGroup1->run();
 }
 
 void Robot::teleopPeriodic() {

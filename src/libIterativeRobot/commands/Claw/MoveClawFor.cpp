@@ -40,3 +40,6 @@ void MoveClawFor::interrupted() {
   // with a higher priority.
   Robot::claw->move(0);
 }
+
+void MoveClawFor::blocked() {
+}

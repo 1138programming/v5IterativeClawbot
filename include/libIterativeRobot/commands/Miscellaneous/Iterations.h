@@ -11,6 +11,7 @@ class Iterations: public libIterativeRobot::Command {
     bool isFinished();
     void end();
     void interrupted();
+    void blocked();
     Iterations(int duration, int id);
   private:
     int currIteration;

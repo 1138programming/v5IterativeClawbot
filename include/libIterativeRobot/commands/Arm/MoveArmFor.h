@@ -11,6 +11,7 @@ class MoveArmFor: public libIterativeRobot::Command {
     bool isFinished();
     void end();
     void interrupted();
+    void blocked();
     MoveArmFor(unsigned int duration, int speed = 127);
   private:
     unsigned int duration;

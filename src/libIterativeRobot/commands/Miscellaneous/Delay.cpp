@@ -9,6 +9,8 @@ Delay::Delay(int duration, int id) {
   this->id = id;
 }
 
+Delay::Delay(int duration) : Delay(duration, 0){};
+
 bool Delay::canRun() {
   return true; // This is the default value anyways, so this method can be removed
 }

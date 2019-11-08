@@ -10,6 +10,7 @@
 #include "libIterativeRobot/commands/Base/DriveWithJoy.h"
 #include "libIterativeRobot/commands/Claw/ClawControl.h"
 #include "libIterativeRobot/commands/Claw/MoveClawFor.h"
+#include "libIterativeRobot/commands/Miscellaneous/Delay.h"
 
 Robot* Robot::instance = 0;
 
@@ -75,14 +76,16 @@ Robot::Robot() {
 void Robot::robotInit() {
   printf("Robot created.\n");
 
-  autonChooser->addAutonCommand(new AutonGroup1(), "AutonGroup1");
-  autonChooser->addAutonCommand(new AutonGroup2(), "AutonGroup2");
+  //autonChooser->addAutonCommand(new AutonGroup1(), "AutonGroup1");
+  //autonChooser->addAutonCommand(new AutonGroup2(), "AutonGroup2");
+  autonChooser->addAutonCommand(new Delay(500), "Delay 500");
+  autonChooser->addAutonCommand(new Delay(1000), "Delay 1000");
 }
 
 void Robot::autonInit() {
   printf("Default autonInit() function\n");
   autonChooser->uninit();
-  autonChooser->getAutonCommand()->run();
+  autonChooser->runAuton();
 }
 
 void Robot::autonPeriodic() {
